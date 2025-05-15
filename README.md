@@ -8,13 +8,13 @@
 # system call
 #### The setgid() system call in Unix-like operating systems is used to set the group ID of the calling process. This function allows a process to change its real group ID (GID) to a specified value, which affects its access permissions to files and resources. Only a privileged process (typically with root permissions) can set the GID to an arbitrary value. If a non-privileged process attempts to change its GID, it must set it to its effective group ID or saved set-group-ID. Changing the group ID is crucial in implementing security models, such as dropping privileges after starting with elevated rights. The new group ID determines the default group ownership of newly created files and affects permission checks. setgid() returns zero on success and -1 on failure, setting errno to indicate the error. It is defined in <unistd.h> and commonly used in daemons or setuid/setgid programs. Improper use can lead to security vulnerabilities if group privileges are not handled
 # references
-[1](https://en.wikipedia.org)
+[https://en.wikipedia.org)](https://en.wikipedia.org)
 
-[2](https://www.calculate-linux.org)
+[2] (https://www.calculate-linux.org)
 
-[3](https://old.calculate-linux.org)
+[3] (https://old.calculate-linux.org)
 
-[4](https://distrowatch.com)
+[4] (https://distrowatch.com)
 
 [5](https://www.techphylum.com)
 
